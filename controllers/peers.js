@@ -34,14 +34,17 @@ const updatePeers=(req,res)=>{
                     clientRatings.map(clientRate =>{
                         otherClientRate=otherClientRatings.filter(otherClientRate => otherClientRate.businessId==clientRate.businessId);
                         if(otherClientRate.length>0){
-                            compatibility=1;
-
+                            compatibility=densityFunction(otherClientRate[0].rating,clientRate.rating,sigmaSquareConstant);
+                            incompatibility=1-compatibility*correctionConstant;
+                            compatibilityIndex-=incompatibility;
+                            //console.log(compatibility)
                         }else{
                             compatibilityIndex-=1;
                         }
                         //console.log(otherClientRate)
                     })
-                    //console.log(client.clientId,otherClient.clientId,compatibilityIndex)
+                    compatibilityindexPerUnit=compatibilityIndex/clientRatings.length;
+                    console.log(client.clientId,otherClient.clientId,compatibilityIndex,compatibilityindexPerUnit)
                 }
                 //console.log(compatibilityLength)
             }
