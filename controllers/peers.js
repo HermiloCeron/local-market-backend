@@ -16,11 +16,22 @@ const updatePeers=(req,res)=>{
                 let otherClientRatings=ratings.filter(rating => rating.clientId==otherClient.clientId);
                 let compatibilityLength=Math.floor(clientRatings.length*0.8);
                 if(compatibilityLength>0 && otherClientRatings.length>compatibilityLength){
-                    compatibilityIndex=otherClientRatings.length;
+                    if(otherClientRatings.length<=clientRatings.length){
+                        compatibilityIndex=otherClientRatings.length;
+                    }
+                    else{
+                        compatibilityIndex=clientRatings.length;
+                    }
                     clientRatings.map(clientRate =>{
                         otherClientRate=otherClientRatings.filter(otherClientRate => otherClientRate.businessId==clientRate.businessId);
-                        console.log(otherClientRate)
+                        if(otherClientRate.length>0){
+
+                        }else{
+                            compatibilityIndex-=1;
+                        }
+                        //console.log(otherClientRate)
                     })
+                    console.log(client.clientId,otherClient.clientId,compatibilityIndex)
                 }
                 //console.log(compatibilityLength)
             }
