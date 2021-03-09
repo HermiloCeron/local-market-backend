@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/HermiloCeron/local-market-backend/issues"
   },
-  "homepage": "https://github.com/HermiloCeron/local-market-backend#readme"
+  "homepage": "https://github.com/HermiloCeron/local-market-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
