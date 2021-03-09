@@ -1,0 +1,15 @@
+sequelize seed:generate --name demo-clients
+
+sequelize seed:generate --name demo-peers
+
+sequelize seed:generate --name demo-ratings
+
+sequelize seed:generate --name demo-businesses
+
+sequelize seed:generate --name demo-change-requests
+
+sequelize seed:generate --name demo-administrators
+
+sequelize seed:generate --name demo-owner-approvals
+
+sequelize seed:generate --name demo-counters
