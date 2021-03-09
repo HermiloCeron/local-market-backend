@@ -1,0 +1,13 @@
+sequelize model:generate --name Client --attributes clientId:integer,username:string,password:string,eMail:string,location:string
+
+sequelize model:generate --name Peer --attributes peerId:integer,clientId:integer,peerClientId:integer,compatibilityIndex:float
+
+sequelize model:generate --name Rating --attributes ratingId:integer,clientId:integer,businessId:integer,rating:integer
+
+sequelize model:generate --name Business --attributes businessId:integer,name:string,description:string,address:string,webpage:string,facebook:string,instagram:string,whatsapp:string,photo:string,telephone:string,foodCategory:string,ownerId:integer,location:string
+
+sequelize model:generate --name ChangeRequest --attributes changeId:integer,clientId:integer,businessId:integer,name:string,description:string,address:string,webpage:string,facebook:string,instagram:string,whatsapp:string,photo:string,telephone:string,foodCategory:string,ownerId:integer,location:string,status:integer
+
+sequelize model:generate --name Administrator --attributes administratorId:integer,clientId:integer
+
+sequelize model:generate --name OwnerApproval --attributes aprovalId:integer,clientId:integer,previousOwner:integer,businessId:integer,message:string,status:integer

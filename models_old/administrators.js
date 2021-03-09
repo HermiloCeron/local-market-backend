@@ -1,11 +1,11 @@
 const administrators=[
     {
         administratorId: 1,
-        client_Id: 1
+        clientId: 1
     },
     {
         administratorId: 2,
-        client_Id: 2
+        clientId: 2
     }
 ]
 

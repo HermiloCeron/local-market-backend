@@ -5,7 +5,7 @@ const ownerAprovals=[
         previousOwner: 6,
         businessId: 12,
         message: "please",
-        status: null
+        status: 0
     }
 ]
 
