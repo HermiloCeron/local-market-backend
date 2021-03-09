@@ -6,7 +6,8 @@ const ownerAprovals=require('../models/owner-aprovals.js');
 const peers=require('../models/peers.js');
 const ratings=require('../models/ratings.js');
 
-const minimumCompatibilityLenghtIndex=0.6; 
+const minimumCompatibilityLenghtIndex=0.6;
+const minimumCompatibilityPerUnit=0.55;
 const sigmaSquareConstant=1;
 
 const densityFunction=(x,mu,squareSigma)=>{
@@ -14,6 +15,8 @@ const densityFunction=(x,mu,squareSigma)=>{
 }
 
 const correctionConstant=1.0/densityFunction(0,0,sigmaSquareConstant);
+
+let peerCounter=1;
 
 const updatePeers=(req,res)=>{
     clients.map(client => {
@@ -45,6 +48,17 @@ const updatePeers=(req,res)=>{
                     })
                     compatibilityindexPerUnit=compatibilityIndex/clientRatings.length;
                     console.log(client.clientId,otherClient.clientId,compatibilityIndex,compatibilityindexPerUnit)
+                    if(compatibilityindexPerUnit>=minimumCompatibilityPerUnit){
+                        let newPeer={
+                            peerId: peerCounter,
+                            clientId: client.clientId,
+                            peerClientId: otherClient.clientId,
+                            compatibilityIndex: compatibilityindexPerUnit
+                        }
+                        peers.push(newPeer);
+                        console.log(peers)
+                        peerCounter++;
+                    }
                 }
                 //console.log(compatibilityLength)
             }
