@@ -12,7 +12,7 @@ const business=[
         telephone: "+52 833 403 1377",
         foodCategory: "Breakfast",
         ownerId: 1,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 2,
@@ -26,7 +26,7 @@ const business=[
         telephone: "+52 81 2091 5030",
         foodCategory: "",
         ownerId: 1,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 3,
@@ -40,7 +40,7 @@ const business=[
         telephone: "+52 1 81 1080 7868",
         foodCategory: "Dinner",
         ownerId: 2,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 4,
@@ -54,7 +54,7 @@ const business=[
         telephone: "",
         foodCategory: "Dinner",
         ownerId: 2,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 5,
@@ -63,12 +63,12 @@ const business=[
         address: "Avenida Roble 660 Poniente N3, L-305 Col. Valle del Campestre, San Pedro Garza García, Monterrey 66265 México",
         webpage: "http://www.loscurricanes.mx",
         facebook: "https://www.facebook.com/loscurricanes/",
-        instagram: "https://www.instagram.com/loscurricanesmty/",
+        instagram: "https://www.instagram.com/loscurricanesMX_NLE/",
         photo: "https://media-cdn.tripadvisor.com/media/photo-p/15/84/96/c4/coronarita.jpg",
         telephone: "+52 81 2316 3048",
         foodCategory: "Supper",
         ownerId: 3,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 6,
@@ -82,7 +82,7 @@ const business=[
         telephone: "",
         foodCategory: "Supper",
         ownerId: 3,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 7,
@@ -96,7 +96,7 @@ const business=[
         telephone: "+52 81 8114 6601",
         foodCategory: "Lunch",
         ownerId: 4,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 8,
@@ -110,7 +110,7 @@ const business=[
         telephone: "",
         foodCategory: "Lunch",
         ownerId: 4,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 9,
@@ -124,7 +124,7 @@ const business=[
         telephone: "",
         foodCategory: "Snack",
         ownerId: 5,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 10,
@@ -138,7 +138,7 @@ const business=[
         telephone: "+52 81 8347 8828",
         foodCategory: "Snack",
         ownerId: 5,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 11,
@@ -152,7 +152,7 @@ const business=[
         telephone: "",
         foodCategory: "Dessert",
         ownerId: 6,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     },
     {
         businessId: 12,
@@ -166,7 +166,7 @@ const business=[
         telephone: "",
         foodCategory: "Dessert",
         ownerId: 6,
-        locationId: "MTY"
+        locationId: "MX_NLE"
     }
 ]
 

@@ -1,5 +1,5 @@
 module.exports = {
     clients: require('./clients'),
-    business: require('./this.business'),
+    business: require('./business'),
     peers: require('./peers')
 }
