@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       businessId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       description: {
@@ -42,17 +44,21 @@ module.exports = {
         type: Sequelize.STRING
       },
       ownerId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       location: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
+        defaultValue: new Date(),
         type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
+        defaultValue: new Date(),
         type: Sequelize.DATE
       }
     });

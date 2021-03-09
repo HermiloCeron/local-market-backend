@@ -11,3 +11,5 @@ sequelize model:generate --name ChangeRequest --attributes changeId:integer,clie
 sequelize model:generate --name Administrator --attributes administratorId:integer,clientId:integer
 
 sequelize model:generate --name OwnerApproval --attributes aprovalId:integer,clientId:integer,previousOwner:integer,businessId:integer,message:string,status:integer
+
+sequelize model:generate --name Counter --attributes clients:integer,peers:integer,ratings:integer,business:integer,changesRequests:integer,administrators:integer,ownerAprovals:integer
