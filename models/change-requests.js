@@ -1,4 +1,4 @@
-changeRequests=[
+const changeRequests=[
     {
         changeId: 1,
         clientId: 1,
@@ -38,3 +38,5 @@ changeRequests=[
         status: null
     },
 ]
+
+module.exports=changeRequests;

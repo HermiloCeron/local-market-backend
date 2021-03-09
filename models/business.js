@@ -169,3 +169,5 @@ const business=[
         locationId: "MTY"
     }
 ]
+
+module.exports=business;

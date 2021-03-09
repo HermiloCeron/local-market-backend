@@ -1,4 +1,4 @@
-ratings=[
+const ratings=[
     {
         ratingId: 1,
         clientId: 1,
@@ -192,3 +192,5 @@ ratings=[
         rating: 1
     }
 ]
+
+module.exports=ratings;

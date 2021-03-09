@@ -1,3 +1,5 @@
-peers=[
-    
+const peers=[
+
 ]
+
+module.exports=peers;

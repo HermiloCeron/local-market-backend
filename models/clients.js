@@ -1,4 +1,4 @@
-clients=[
+const clients=[
     {
         clientId: 1,
         username: "superman1",
@@ -56,3 +56,5 @@ clients=[
         locationId: "MTY"
     },
 ]
+
+module.exports=clients;

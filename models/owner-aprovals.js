@@ -1,4 +1,4 @@
-ownerAprovals=[
+const ownerAprovals=[
     {
         aprovalId: 1,
         clientId: 1,
@@ -8,3 +8,5 @@ ownerAprovals=[
         status: null
     }
 ]
+
+module.exports=ownerAprovals;

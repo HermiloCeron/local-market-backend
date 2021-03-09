@@ -8,3 +8,5 @@ const administrators=[
         client_Id: 2
     }
 ]
+
+module.exports=administrators;
