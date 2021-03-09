@@ -10,6 +10,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/clients', routes.clients)
 
+app.use('/business', routes.business)
+
+app.use('/peers', routes.peers)
+
 app.get('/', (req, res) => {
     res.send('Hello world via express');
 });
