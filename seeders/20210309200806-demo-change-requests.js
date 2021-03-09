@@ -18,7 +18,7 @@ module.exports = {
         telephone: "+52 81 8347 8828",
         foodCategory: "Snack",
         ownerId: 5,
-        locationId: "MX_NLE",
+        location: "MX_NLE",
         status: 0
       },
       {
@@ -36,7 +36,7 @@ module.exports = {
           telephone: "",
           foodCategory: "Dessert",
           ownerId: 6,
-          locationId: "MX_NLE",
+          location: "MX_NLE",
           status: 0
       }
     ], {});

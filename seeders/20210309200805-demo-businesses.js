@@ -16,7 +16,7 @@ module.exports = {
         telephone: "+52 833 403 1377",
         foodCategory: "Breakfast",
         ownerId: 1,
-        locationId: "MX_NLE"
+        location: "MX_NLE"
       },
       {
           businessId: 2,
@@ -31,7 +31,7 @@ module.exports = {
           telephone: "+52 81 2091 5030",
           foodCategory: "",
           ownerId: 1,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 3,
@@ -46,7 +46,7 @@ module.exports = {
           telephone: "+52 1 81 1080 7868",
           foodCategory: "Dinner",
           ownerId: 2,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 4,
@@ -61,7 +61,7 @@ module.exports = {
           telephone: "",
           foodCategory: "Dinner",
           ownerId: 2,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 5,
@@ -76,7 +76,7 @@ module.exports = {
           telephone: "+52 81 2316 3048",
           foodCategory: "Supper",
           ownerId: 3,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 6,
@@ -91,7 +91,7 @@ module.exports = {
           telephone: "",
           foodCategory: "Supper",
           ownerId: 3,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 7,
@@ -106,7 +106,7 @@ module.exports = {
           telephone: "+52 81 8114 6601",
           foodCategory: "Lunch",
           ownerId: 4,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 8,
@@ -121,7 +121,7 @@ module.exports = {
           telephone: "",
           foodCategory: "Lunch",
           ownerId: 4,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 9,
@@ -136,7 +136,7 @@ module.exports = {
           telephone: "",
           foodCategory: "Snack",
           ownerId: 5,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 10,
@@ -151,7 +151,7 @@ module.exports = {
           telephone: "+52 81 8347 8828",
           foodCategory: "Snack",
           ownerId: 5,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 11,
@@ -166,7 +166,7 @@ module.exports = {
           telephone: "",
           foodCategory: "Dessert",
           ownerId: 6,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       },
       {
           businessId: 12,
@@ -181,7 +181,7 @@ module.exports = {
           telephone: "",
           foodCategory: "Dessert",
           ownerId: 6,
-          locationId: "MX_NLE"
+          location: "MX_NLE"
       }
     ], {});
   },
