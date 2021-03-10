@@ -70,10 +70,37 @@ const signupClient=(req,res)=>{
     })
 }
 
+const renderEdit=(req,res)=>{
+    Client.findOne({
+        where: {
+            clientId:req.params.index
+        }
+    })
+    .then(client=>{
+        console.log(JSON.stringify(client,null,4));
+        res.render('edit.ejs',{
+            client: client
+        })
+    })
+}
+
+const editClient=(req,res)=>{
+    req.body.clientId=req.params.index;
+    Client.update(req.body,{
+        where: {clientId: req.params.index},
+        returning: true
+    })
+    .then(client=>{
+        res.redirect(`/clients/profile/${req.params.index}`);
+    })
+}
+
 module.exports = {
     renderLogin,
     renderSignup,
     loginClient,
     renderProfile,
-    signupClient
+    signupClient,
+    renderEdit,
+    editClient
 };

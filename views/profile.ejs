@@ -12,7 +12,13 @@
     </header>
     <main>
         <h1> Welcome <%= client.username %> </h1>
-        UserId: <%= client.clientId %>
+        UserId: <%= client.clientId %> <br>
+        <% for(let i=0;i<client.Businesses.length;i++){ %>
+            <a href='/business/<%= client.Businesses[i].businessId %>'> <%= client.Businesses[i].name %> </a> 
+            Rating: <%= client.Businesses[i].Rating.rating %> <br>
+        <% } %>
+        <br>
+        <a href='/clients/edit/<%= client.clientId %>'>Edit user</a>
     </main>
     
 </body>
