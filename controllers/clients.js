@@ -7,6 +7,7 @@
 // const ratings=require('../models/ratings.js');
 
 const Client=require('../models').Client;
+const Counter=require('../models').Counter;
 
 const renderLogin=(req,res)=>{
     res.render('login.ejs')
@@ -46,9 +47,33 @@ const renderProfile=(req,res)=>{
     })
 }
 
+const signupClient=(req,res)=>{
+    Counter.findByPk(1)
+    .then(counters=>{
+        //console.log(counters)
+        counters.clients++;
+        //console.log(counters)
+        Counter.update(counters.dataValues,{
+            where:{id:1},
+            returning:true
+        })
+        .then(updatedCounter=>{
+            console.log(updatedCounter[1][0].dataValues)
+            let newClientData=req.body;
+            newClientData.clientId=updatedCounter[1][0].dataValues.clients;
+            console.log(newClientData)
+            Client.create(newClientData)
+            .then(newClient=>{
+                res.redirect(`/clients/profile/${newClient.clientId}`);
+            })     
+        })
+    })
+}
+
 module.exports = {
     renderLogin,
     renderSignup,
     loginClient,
-    renderProfile
+    renderProfile,
+    signupClient
 };
