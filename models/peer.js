@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Peer.belongsTo(models.Client,{foreignKey:'clientId'})
     }
   };
   Peer.init({

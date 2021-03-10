@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Rating.belongsTo(models.Client,{foreignKey:'clientId'});
+      Rating.belongsTo(models.Client,{foreignKey:'businessId'});
     }
   };
   Rating.init({
