@@ -6,5 +6,15 @@
 // const peers=require('../models/peers.js');
 // const ratings=require('../models/ratings.js');
 
+const renderLogin=(req,res)=>{
+    res.render('login.ejs')
+}
+
+const renderSignup=(req,res)=>{
+    res.render('signup.ejs')
+}
+
 module.exports = {
+    renderLogin,
+    renderSignup
 };
