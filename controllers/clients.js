@@ -95,6 +95,15 @@ const editClient=(req,res)=>{
     })
 }
 
+const deleteClient=(req,res)=>{
+    Client.destroy({
+        where: {clientId: req.params.index}
+    })
+    .then(()=>{
+        res.redirect('/')
+    })
+}
+
 module.exports = {
     renderLogin,
     renderSignup,
@@ -102,5 +111,6 @@ module.exports = {
     renderProfile,
     signupClient,
     renderEdit,
-    editClient
+    editClient,
+    deleteClient
 };

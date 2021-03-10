@@ -18,7 +18,11 @@
             Rating: <%= client.Businesses[i].Rating.rating %> <br>
         <% } %>
         <br>
-        <a href='/clients/edit/<%= client.clientId %>'>Edit user</a>
+        <a href='/clients/edit/<%= client.clientId %>'>Edit user</a> <br><br>
+
+        <form action="/clients/delete/<%= client.clientId %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete">
+        </form>
     </main>
     
 </body>
