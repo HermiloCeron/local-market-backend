@@ -8,6 +8,8 @@
 
 const Client=require('../models').Client;
 const Counter=require('../models').Counter;
+const Rating=require('../models').Rating;
+const Business=require('../models').Business;
 
 const renderLogin=(req,res)=>{
     res.render('login.ejs')
@@ -38,9 +40,11 @@ const renderProfile=(req,res)=>{
     Client.findOne({
         where: {
             clientId:req.params.index
-        }
+        },
+        include: [Business]
     })
     .then(client=>{
+        console.log(JSON.stringify(client,null,4));
         res.render('profile.ejs',{
             client: client
         })

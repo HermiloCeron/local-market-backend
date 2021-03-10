@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Client.hasMany(models.Rating,{foreignKey: "clientId"});
       Client.hasMany(models.Peer,{foreignKey: 'clientId'});
+      Client.belongsToMany(models.Business,{
+        through:'Rating',
+        foreignKey: 'clientId',
+        otherKey: 'businessId'
+      })
     }
   };
   Client.init({
