@@ -15,7 +15,7 @@ app.use('/business', routes.business)
 app.use('/peers', routes.peers)
 
 app.get('/', (req, res) => {
-    res.render('homepage.ejs');
+    res.render('clients/homepage.ejs');
 });
 
 app.listen(3000, ()=>{
