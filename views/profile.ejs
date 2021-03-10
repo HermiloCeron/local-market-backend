@@ -11,11 +11,8 @@
         <a href='/'>Local market app</a>
     </header>
     <main>
-        <form action='/clients/login' method='POST'>
-            Username: <input type='text' name='username'> <br>
-            Password: <input type='text' name='password'> <br>
-            <input type='submit' value='Login'>
-        </form>
+        <h1> Welcome <%= client.username %> </h1>
+        UserId: <%= client.clientId %>
     </main>
     
 </body>

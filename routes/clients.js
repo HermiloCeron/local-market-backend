@@ -3,7 +3,8 @@ const router = express.Router();
 const ctrl=require('../controllers');
 
 router.get('/login',ctrl.clients.renderLogin);
-
 router.get('/signup',ctrl.clients.renderSignup);
+router.get('/profile/:index',ctrl.clients.renderProfile);
+router.post('/login',ctrl.clients.loginClient);
 
 module.exports = router;
