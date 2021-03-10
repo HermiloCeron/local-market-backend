@@ -1,6 +1,6 @@
-const business=require('../models/business.js');
+// const business=require('../models/business.js');
 
-const ratings=require('../models/ratings.js');
+// const ratings=require('../models/ratings.js');
 
 module.exports = {
 };
