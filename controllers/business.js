@@ -111,16 +111,49 @@ const deleteBusiness=(req,res)=>{
     })
     .then(business=>{
         if(business.ownerId===parseInt(req.params.clientIndex)){
-            Business.destroy({
+            ChangeRequest.destroy({
                 where: {businessId: req.params.businessIndex}
             })
             .then(()=>{
-                res.redirect(`/clients/profile/${req.params.clientIndex}`)
+                Business.destroy({
+                    where: {businessId: req.params.businessIndex}
+                })
+                .then(()=>{
+                    res.redirect(`/clients/profile/${req.params.clientIndex}`)
+                })
             })
         }else{
             res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`)
         }
 
+    })
+}
+
+const changeAction=(req,res)=>{
+    ChangeRequest.findByPk(req.params.changeIndex)
+    .then(changeRequest=>{
+        let updateChange=changeRequest.dataValues;
+        updateChange.status=req.body.status;
+        let updateBusiness=updateChange;
+        delete updateBusiness.id;
+        delete updateBusiness.changeId;
+        delete updateBusiness.clientId;
+        ChangeRequest.update(updateChange,{
+            where: {id: req.params.changeIndex},
+            returning: true
+        }).then(updatedRequest=>{
+            if(parseInt(req.body.status)==1){
+                Business.update(updateBusiness,{
+                    where: {businessId: updateBusiness.businessId},
+                    returning: true
+                })
+                .then(updatedBusiness=>{
+                    res.redirect(`/business/${req.params.clientIndex}/show/${updateBusiness.businessId}`);
+                })
+            }else{
+                res.redirect(`/business/${req.params.clientIndex}/show/${updateBusiness.businessId}`);
+            }
+        })
     })
 }
 
@@ -130,5 +163,6 @@ module.exports = {
     createBusiness,
     renderEdit,
     editBusiness,
-    deleteBusiness
+    deleteBusiness,
+    changeAction
 };

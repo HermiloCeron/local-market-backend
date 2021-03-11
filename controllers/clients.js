@@ -101,7 +101,6 @@ const renderChangeRequests=(req,res)=>{
         where: {ownerId: req.params.index}
     })
     .then(ownerRequests=>{
-        console.log(JSON.stringify(ownerRequests,null,4))
         res.render('clients/changeRequests.ejs',{
             ownerRequests: ownerRequests,
             clientIndex:req.params.index

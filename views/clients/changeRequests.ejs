@@ -15,7 +15,7 @@
             Change Id <%= ownerRequests[i].id %>
             Requester: <%= ownerRequests[i].clientId %>
 
-            <form action='/clients/edit/<%=  %>?_method=PUT' method='POST'>
+            <form action='/business/<%= clientIndex %>/changeAction/<%= ownerRequests[i].id %>?_method=PUT' method='POST'>
                 Status: <input type='text' name='status' value='<%= ownerRequests[i].status %>'> <br>
                 <input type='submit' value='Change'>
             </form>
