@@ -92,6 +92,7 @@ const editBusiness=(req,res)=>{
                     changeRequestBusinessData.ownerId=business.ownerId;
                     changeRequestBusinessData.changeId=updatedCounter.changeRequests;
                     changeRequestBusinessData.clientId=req.params.clientIndex;
+                    changeRequestBusinessData.status=0;
                     ChangeRequest.create(changeRequestBusinessData)
                     .then(createdChangeRequest=>{
                         res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`);
