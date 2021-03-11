@@ -2,6 +2,7 @@ const Rating=require('../models').Rating;
 const Business=require('../models').Business;
 const Counter=require('../models').Counter;
 const ChangeRequest=require('../models').ChangeRequest;
+const OwnerAproval=require('../models').OwnerAproval;
 
 const renderBusiness=(req,res)=>{
     Business.findOne({
@@ -157,6 +158,33 @@ const changeAction=(req,res)=>{
     })
 }
 
+const createOwnerRequest=(req,res)=>{
+    Counter.findByPk(1)
+    .then(counters=>{
+        counters.ownerAprovals++;
+        Counter.update(counters.dataValues,{
+            where:{id:1},
+            returning:true
+        })
+        .then(updatedCounter=>{
+            let request={
+                clientId:req.params.clientIndex,
+                message: req.body.message,
+                businessId: req.params.businessIndex,
+                status: 0,
+                previousOwner: req.params.ownerIndex,
+                aprovalId: counters.ownerAprovals
+            }
+            console.log(request)
+            OwnerAproval.create(request)
+            .then(newOwnerAproval=>{
+                res.redirect(`/business/${req.params.clientIndex}/show/${updateBusiness.businessId}`);
+            })
+        })
+    })
+    
+}
+
 module.exports = {
     renderBusiness,
     renderNew,
@@ -164,5 +192,6 @@ module.exports = {
     renderEdit,
     editBusiness,
     deleteBusiness,
-    changeAction
+    changeAction,
+    createOwnerRequest
 };
