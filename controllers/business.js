@@ -44,8 +44,24 @@ const createBusiness=(req,res)=>{
     })
 }
 
+const renderEdit=(req,res)=>{
+    Business.findOne({
+        where: {
+            businessId:req.params.businessIndex
+        }
+    })
+    .then(business=>{
+        //console.log(JSON.stringify(client,null,4));
+        res.render('business/edit.ejs',{
+            business: business,
+            clientIndex: req.params.clientIndex
+        })
+    })
+}
+
 module.exports = {
     renderBusiness,
     renderNew,
-    createBusiness
+    createBusiness,
+    renderEdit
 };
