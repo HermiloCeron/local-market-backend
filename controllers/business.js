@@ -1,5 +1,6 @@
 const Rating=require('../models').Rating;
 const Business=require('../models').Business;
+const Counter=require('../models').Counter;
 
 const renderBusiness=(req,res)=>{
     Business.findOne({
@@ -23,7 +24,28 @@ const renderNew=(req,res)=>{
     });
 }
 
+const createBusiness=(req,res)=>{
+    Counter.findByPk(1)
+    .then(counters=>{
+        counters.business++;
+        Counter.update(counters.dataValues,{
+            where:{id:1},
+            returning:true
+        })
+        .then(updatedCounter=>{
+            let newBusinessData=req.body;
+            newBusinessData.businessId=updatedCounter[1][0].dataValues.business;
+            newBusinessData.ownerId=req.params.clientIndex;
+            Business.create(newBusinessData)
+            .then(newBusiness=>{
+                res.redirect(`/business/${req.params.clientIndex}/show/${newBusiness.businessId}`);
+            })     
+        })
+    })
+}
+
 module.exports = {
     renderBusiness,
-    renderNew
+    renderNew,
+    createBusiness
 };
