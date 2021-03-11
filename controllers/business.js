@@ -102,10 +102,32 @@ const editBusiness=(req,res)=>{
     })
 }
 
+const deleteBusiness=(req,res)=>{
+    Business.findOne({
+        where: {
+            businessId:req.params.businessIndex
+        }
+    })
+    .then(business=>{
+        if(business.ownerId===parseInt(req.params.clientIndex)){
+            Business.destroy({
+                where: {businessId: req.params.businessIndex}
+            })
+            .then(()=>{
+                res.redirect(`/clients/profile/${req.params.clientIndex}`)
+            })
+        }else{
+            res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`)
+        }
+
+    })
+}
+
 module.exports = {
     renderBusiness,
     renderNew,
     createBusiness,
     renderEdit,
-    editBusiness
+    editBusiness,
+    deleteBusiness
 };

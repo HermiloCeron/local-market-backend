@@ -16,5 +16,9 @@
 
     </main>
     <a href='/business/<%= clientIndex %>/edit/<%= business.businessId %>'>Edit</a>
+
+    <form action="/business/<%= clientIndex %>/delete/<%= business.businessId  %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete">
+    </form>
 </body>
 </html>
