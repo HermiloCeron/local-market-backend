@@ -36,7 +36,6 @@ const renderProfile=(req,res)=>{
         include: [Business]
     })
     .then(client=>{
-        console.log(JSON.stringify(client,null,4));
         res.render('clients/profile.ejs',{
             client: client
         })

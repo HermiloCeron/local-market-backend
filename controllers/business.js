@@ -1,6 +1,7 @@
 const Rating=require('../models').Rating;
 const Business=require('../models').Business;
 const Counter=require('../models').Counter;
+const ChangeRequest=require('../models').ChangeRequest;
 
 const renderBusiness=(req,res)=>{
     Business.findOne({
@@ -10,7 +11,6 @@ const renderBusiness=(req,res)=>{
         include: [Rating]
     })
     .then(business=>{
-        console.log(JSON.stringify(business,null,4));
         res.render(`business/show.ejs`,{
             business: business,
             clientIndex: req.params.clientIndex
@@ -51,7 +51,6 @@ const renderEdit=(req,res)=>{
         }
     })
     .then(business=>{
-        //console.log(JSON.stringify(client,null,4));
         res.render('business/edit.ejs',{
             business: business,
             clientIndex: req.params.clientIndex
@@ -72,13 +71,32 @@ const editBusiness=(req,res)=>{
             editedBusinessData=req.body;
             editedBusinessData.businessId=req.params.businessIndex;
             editedBusinessData.ownerId=req.params.clientIndex;
-            console.log(editedBusinessData)
             Business.update(editedBusinessData,{
                 where: {businessId: req.params.businessIndex},
                 returning: true
             })
             .then(updatedBusiness=>{
                 res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`);
+            })
+        }else{
+            Counter.findByPk(1)
+            .then(counters=>{
+                counters.changeRequests++;
+                Counter.update(counters.dataValues,{
+                    where:{id:1},
+                    returning:true
+                })
+                .then(updatedCounter=>{
+                    changeRequestBusinessData=req.body;
+                    changeRequestBusinessData.businessId=req.params.businessIndex;
+                    changeRequestBusinessData.ownerId=business.ownerId;
+                    changeRequestBusinessData.changeId=updatedCounter.changeRequests;
+                    changeRequestBusinessData.clientId=req.params.clientIndex;
+                    ChangeRequest.create(changeRequestBusinessData)
+                    .then(createdChangeRequest=>{
+                        res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`);
+                    })
+                })
             })
         }
     })
