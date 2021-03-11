@@ -59,9 +59,35 @@ const renderEdit=(req,res)=>{
     })
 }
 
+const editBusiness=(req,res)=>{
+    req.body.businessId=req.params.businessIndex;
+    Business.findOne({
+        where: {
+            businessId:req.params.businessIndex
+        }
+    })
+    .then(business=>{
+        console.log(business.ownerId,req.params.clientIndex)
+        if(business.ownerId===parseInt(req.params.clientIndex)){
+            editedBusinessData=req.body;
+            editedBusinessData.businessId=req.params.businessIndex;
+            editedBusinessData.ownerId=req.params.clientIndex;
+            console.log(editedBusinessData)
+            Business.update(editedBusinessData,{
+                where: {businessId: req.params.businessIndex},
+                returning: true
+            })
+            .then(updatedBusiness=>{
+                res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`);
+            })
+        }
+    })
+}
+
 module.exports = {
     renderBusiness,
     renderNew,
     createBusiness,
-    renderEdit
+    renderEdit,
+    editBusiness
 };

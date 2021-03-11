@@ -11,20 +11,19 @@
         <a href='/'>Local market app</a>
     </header>
     <main>
-        <form action='/business/<%= clientIndex %>/new' method='POST'>
-            name: <input type='text' name='name'> <br>
-            description: <input type='text' name='description'> <br>
-            address: <input type='text' name='address'> <br>
-            webpage: <input type='text' name='webpage'> <br>
-            facebook: <input type='text' name='facebook'> <br>
-            instagram: <input type='text' name='instagram'> <br>
-            whatsapp: <input type='text' name='whatsapp'> <br>
-            photo: <input type='text' name='photo'> <br>
-            telephone: <input type='text' name='telephone'> <br>
-            foodCategory: <input type='text' name='foodCategory'> <br>
-            location: <input type='text' name='location'> <br>
+        <form action='/business/<%= clientIndex %>/edit/<%= business.businessId %>?_method=PUT' method='POST'>
+            name: <input type='text' name='name' value='<%= business.name %>'> <br>
+            description: <input type='text' name='description' value='<%= business.description %>'> <br>
+            address: <input type='text' name='address' value='<%= business.address %>'> <br>
+            webpage: <input type='text' name='webpage' value='<%= business.webpage %>'> <br>
+            facebook: <input type='text' name='facebook' value='<%= business.facebook %>'> <br>
+            instagram: <input type='text' name='instagram' value='<%= business.instagram %>'> <br>
+            whatsapp: <input type='text' name='whatsapp' value='<%= business.whatsapp %>'> <br>
+            photo: <input type='text' name='photo' value='<%= business.photo %>'> <br>
+            telephone: <input type='text' name='telephone' value='<%= business.telephone %>'> <br>
+            foodCategory: <input type='text' name='foodCategory' value='<%= business.foodCategory %>'> <br>
+            location: <input type='text' name='location' value='<%= business.location %>'> <br>
             <input type='submit' value='Edit'>
-
         </form>
 </body>
 </html>

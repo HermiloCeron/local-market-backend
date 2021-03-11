@@ -6,5 +6,6 @@ router.get('/:clientIndex/show/:businessIndex',ctrl.business.renderBusiness);
 router.get('/:clientIndex/new',ctrl.business.renderNew);
 router.get('/:clientIndex/edit/:businessIndex',ctrl.business.renderEdit);
 router.post('/:clientIndex/new',ctrl.business.createBusiness);
+router.put('/:clientIndex/edit/:businessIndex',ctrl.business.editBusiness);
 
 module.exports = router;
