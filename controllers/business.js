@@ -116,11 +116,16 @@ const deleteBusiness=(req,res)=>{
                 where: {businessId: req.params.businessIndex}
             })
             .then(()=>{
-                Business.destroy({
+                Rating.destroy({
                     where: {businessId: req.params.businessIndex}
                 })
                 .then(()=>{
-                    res.redirect(`/clients/profile/${req.params.clientIndex}`)
+                    Business.destroy({
+                        where: {businessId: req.params.businessIndex}
+                    })
+                    .then(()=>{
+                        res.redirect(`/clients/profile/${req.params.clientIndex}`)
+                    })
                 })
             })
         }else{
