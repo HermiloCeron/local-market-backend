@@ -186,8 +186,39 @@ const createOwnerRequest=(req,res)=>{
                 res.redirect(`/business/${req.params.clientIndex}/show/${updateBusiness.businessId}`);
             })
         })
+    })   
+}
+
+const aprovalAction=(req,res)=>{
+    OwnerAproval.findOne({
+        where: {
+            aprovalId: req.params.aprovalIndex
+        }
     })
-    
+    .then(aprovalRequest=>{
+        console.log(aprovalRequest)
+        if(parseInt(req.body.status)==1){
+            Business.findOne({
+                where: {
+                    businessId: aprovalRequest.dataValues.businessId
+                }
+            })
+            .then(foundBusiness=>{
+                foundBusiness.dataValues.ownerId=aprovalRequest.dataValues.clientId;
+                Business.update(foundBusiness.dataValues,{
+                    where:{id:aprovalRequest.dataValues.businessId},
+                    returning:true
+                })
+                .then(updatedBusiness =>{
+                    res.redirect(`/business/${req.params.clientIndex}/show/${aprovalRequest.dataValues.businessId}`);
+                })
+            })
+        }else{
+            console.log("HOLA",req.params.clientIndex,aprovalRequest.dataValues.businessId)
+            res.redirect(`/business/${req.params.clientIndex}/show/${aprovalRequest.dataValues.businessId}`);
+        }
+        
+    })
 }
 
 module.exports = {
@@ -198,5 +229,6 @@ module.exports = {
     editBusiness,
     deleteBusiness,
     changeAction,
-    createOwnerRequest
+    createOwnerRequest,
+    aprovalAction
 };

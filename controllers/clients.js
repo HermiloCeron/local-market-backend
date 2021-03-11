@@ -3,6 +3,8 @@ const Counter=require('../models').Counter;
 const Rating=require('../models').Rating;
 const Business=require('../models').Business;
 const ChangeRequest=require('../models').ChangeRequest;
+const OwnerAproval=require('../models').OwnerAproval;
+const Administrator=require('../models').Administrator;
 
 const renderLogin=(req,res)=>{
     res.render('clients/login.ejs')
@@ -113,6 +115,37 @@ const renderChangeRequests=(req,res)=>{
     })
 }
 
+const renderOwnerAprovals=(req,res)=>{
+    Administrator.findOne({
+        where: {clientId: req.params.index}
+    })
+    .then(anAdministrator=>{
+        if(anAdministrator){
+            OwnerAproval.findAll()
+            .then(ownerAprovals=>{
+                console.log(ownerAprovals);
+                res.render('clients/ownerAprovals.ejs',{
+                    ownerAprovals: ownerAprovals,
+                    clientIndex:req.params.index
+                })
+            })
+        }else{
+            Client.findOne({
+                where: {
+                    clientId:req.params.index
+                },
+                include: [Business]
+            })
+            .then(client=>{
+                res.render('clients/profile.ejs',{
+                    client: client
+                })
+            })
+        }
+    })
+    
+}
+
 module.exports = {
     renderLogin,
     renderSignup,
@@ -122,5 +155,6 @@ module.exports = {
     renderEdit,
     editClient,
     deleteClient,
-    renderChangeRequests
+    renderChangeRequests,
+    renderOwnerAprovals
 };
