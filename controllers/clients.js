@@ -92,7 +92,12 @@ const deleteClient=(req,res)=>{
         where: {clientId: req.params.index}
     })
     .then(()=>{
-        res.redirect('/')
+        Rating.destroy({
+            where: {clientId: req.params.index}
+        })
+        .then(()=>{
+            res.redirect('/')
+        })
     })
 }
 
