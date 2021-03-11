@@ -2,6 +2,7 @@ const Client=require('../models').Client;
 const Counter=require('../models').Counter;
 const Rating=require('../models').Rating;
 const Business=require('../models').Business;
+const ChangeRequest=require('../models').ChangeRequest;
 
 const renderLogin=(req,res)=>{
     res.render('clients/login.ejs')
@@ -95,6 +96,19 @@ const deleteClient=(req,res)=>{
     })
 }
 
+const renderChangeRequests=(req,res)=>{
+    ChangeRequest.findAll({
+        where: {ownerId: req.params.index}
+    })
+    .then(ownerRequests=>{
+        console.log(JSON.stringify(ownerRequests,null,4))
+        res.render('clients/changeRequests.ejs',{
+            ownerRequests: ownerRequests,
+            clientIndex:req.params.index
+        })
+    })
+}
+
 module.exports = {
     renderLogin,
     renderSignup,
@@ -103,5 +117,6 @@ module.exports = {
     signupClient,
     renderEdit,
     editClient,
-    deleteClient
+    deleteClient,
+    renderChangeRequests
 };

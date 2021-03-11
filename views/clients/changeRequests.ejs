@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href='/'>Local market app</a>
+    </header>
+    <main>
+        <% for(let i=0;i<ownerRequests.length;i++){ %> 
+            Change Id <%= ownerRequests[i].id %>
+            Requester: <%= ownerRequests[i].clientId %>
+
+            <form action='/clients/edit/<%=  %>?_method=PUT' method='POST'>
+                Status: <input type='text' name='status' value='<%= ownerRequests[i].status %>'> <br>
+                <input type='submit' value='Change'>
+            </form>
+        <% } %>
+    </main>
+</body>
+</html>
