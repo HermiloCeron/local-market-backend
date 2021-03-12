@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express'); //from documentation: express is function
 const methodOverride = require('method-override');
 const routes = require('./routes');
