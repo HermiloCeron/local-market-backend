@@ -6,9 +6,9 @@ const routes = require('./routes');
 
 const app = express();//app is an object
 
-app.use(methodOverride('_method'));
-
 app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride('_method'));
 
 app.use('/clients', routes.clients)
 
