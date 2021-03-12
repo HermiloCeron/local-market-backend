@@ -20,6 +20,6 @@ app.get('/', (req, res) => {
     res.render('clients/homepage.ejs');
 });
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT || 80, ()=>{
     console.log("I am listening");
 });
