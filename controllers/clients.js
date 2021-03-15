@@ -52,12 +52,14 @@ const renderProfile=(req,res)=>{
 const signupClient=(req,res)=>{
     Counter.findByPk(1)
     .then(counters=>{
+        console.log(counters.dataValues)
         counters.clients++;
         Counter.update(counters.dataValues,{
             where:{id:1},
             returning:true
         })
         .then(updatedCounter=>{
+            console.log(req.body)
             let newClientData=req.body;
             newClientData.clientId=updatedCounter[1][0].dataValues.clients;
             Client.create(newClientData)
