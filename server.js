@@ -8,7 +8,7 @@ const app = express();//app is an object
 
 const port=process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true }));
 
 app.use(methodOverride('_method'));
 

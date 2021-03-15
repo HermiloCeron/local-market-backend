@@ -16,7 +16,7 @@ const renderSignup=(req,res)=>{
 }
 
 const loginClient=(req,res)=>{
-    console.log(req)
+    console.log(req.body)
     Client.findOne({
         where: {
             username:req.body.username,
