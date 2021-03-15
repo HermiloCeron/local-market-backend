@@ -5,6 +5,7 @@ const Business=require('../models').Business;
 const ChangeRequest=require('../models').ChangeRequest;
 const OwnerAproval=require('../models').OwnerAproval;
 const Administrator=require('../models').Administrator;
+const constants = require('../constants');
 
 const renderLogin=(req,res)=>{
     res.render('clients/login.ejs')
@@ -15,6 +16,7 @@ const renderSignup=(req,res)=>{
 }
 
 const loginClient=(req,res)=>{
+    console.log(req)
     Client.findOne({
         where: {
             username:req.body.username,
@@ -24,9 +26,7 @@ const loginClient=(req,res)=>{
     .then(client=>{
         if(client){
             //res.redirect(`/clients/profile/${client.clientId}`)
-            res.status(constants.SUCCESS).json({
-                "user":client.clientId
-            })
+            res.status(constants.SUCCESS).json(client)
         }else{
             //res.redirect('/clients/signup')
             res.status(constants.BAD_REQUEST).send(`ERROR: Incorrect Username/Password`);
