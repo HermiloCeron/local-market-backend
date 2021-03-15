@@ -29,7 +29,7 @@ const loginClient=(req,res)=>{
             res.status(constants.SUCCESS).json(client)
         }else{
             //res.redirect('/clients/signup')
-            res.status(constants.BAD_REQUEST).json({message:`ERROR: Incorrect Username/Password`});
+            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
         }
         
     })
