@@ -62,7 +62,13 @@ const signupClient=(req,res)=>{
             newClientData.clientId=updatedCounter[1][0].dataValues.clients;
             Client.create(newClientData)
             .then(newClient=>{
-                res.redirect(`/clients/profile/${newClient.clientId}`);
+                //res.redirect(`/clients/profile/${newClient.clientId}`);
+                if(newClient){
+                    res.status(constants.SUCCESS).json(newClient)
+                }else{
+                    res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
+                }
+
             })     
         })
     })
