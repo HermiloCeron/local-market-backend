@@ -23,9 +23,13 @@ const loginClient=(req,res)=>{
     })
     .then(client=>{
         if(client){
-            res.redirect(`/clients/profile/${client.clientId}`)
+            //res.redirect(`/clients/profile/${client.clientId}`)
+            res.status(constants.SUCCESS).json({
+                "user":client.clientId
+            })
         }else{
-            res.redirect('/clients/signup')
+            //res.redirect('/clients/signup')
+            res.status(constants.BAD_REQUEST).send(`ERROR: Incorrect Username/Password`);
         }
         
     })
