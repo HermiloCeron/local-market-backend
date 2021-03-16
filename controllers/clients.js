@@ -97,7 +97,12 @@ const editClient=(req,res)=>{
         returning: true
     })
     .then(client=>{
-        res.redirect(`/clients/profile/${req.params.index}`);
+        //res.redirect(`/clients/profile/${req.params.index}`);
+        if(client){
+            res.status(constants.SUCCESS).json(client)
+        }else{
+            res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
+        }
     })
 }
 
