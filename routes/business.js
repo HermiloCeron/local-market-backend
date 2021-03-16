@@ -3,7 +3,7 @@ const router = express.Router();
 const ctrl=require('../controllers');
 
 router.get('/show/:businessArea',ctrl.business.renderLocalBusiness);
-router.get('/:clientIndex/show/:businessIndex',ctrl.business.renderBusiness);
+router.get('/show/:businessIndex',ctrl.business.renderBusiness);
 router.get('/:clientIndex/new',ctrl.business.renderNew);
 router.get('/:clientIndex/edit/:businessIndex',ctrl.business.renderEdit);
 router.post('/:clientIndex/new',ctrl.business.createBusiness);

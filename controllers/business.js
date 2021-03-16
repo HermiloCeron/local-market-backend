@@ -13,10 +13,11 @@ const renderBusiness=(req,res)=>{
         include: [Rating]
     })
     .then(business=>{
-        res.render(`business/show.ejs`,{
-            business: business,
-            clientIndex: req.params.clientIndex
-        })
+        if(business){
+            res.status(constants.SUCCESS).json(business);
+        }else{
+            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
+        }
     })
 }
 
