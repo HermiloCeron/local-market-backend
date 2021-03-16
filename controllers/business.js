@@ -3,6 +3,7 @@ const Business=require('../models').Business;
 const Counter=require('../models').Counter;
 const ChangeRequest=require('../models').ChangeRequest;
 const OwnerAproval=require('../models').OwnerAproval;
+const constants = require('../constants');
 
 const renderBusiness=(req,res)=>{
     Business.findOne({
@@ -221,6 +222,26 @@ const aprovalAction=(req,res)=>{
     })
 }
 
+const renderLocalBusiness=(req,res)=>{
+    Business.findAll({
+        where: {
+            location:req.params.businessArea
+        },
+        include: [Rating]
+    })
+    .then(business=>{
+        if(business){
+            res.status(constants.SUCCESS).json(business);
+        }else{
+            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
+        }
+        res.render(`business/show.ejs`,{
+            business: business,
+            clientIndex: req.params.clientIndex
+        })
+    })
+}
+
 module.exports = {
     renderBusiness,
     renderNew,
@@ -230,5 +251,6 @@ module.exports = {
     deleteBusiness,
     changeAction,
     createOwnerRequest,
-    aprovalAction
+    aprovalAction,
+    renderLocalBusiness
 };
