@@ -235,10 +235,6 @@ const renderLocalBusiness=(req,res)=>{
         }else{
             res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
         }
-        res.render(`business/show.ejs`,{
-            business: business,
-            clientIndex: req.params.clientIndex
-        })
     })
 }
 
