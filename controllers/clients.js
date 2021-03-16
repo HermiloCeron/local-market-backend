@@ -99,7 +99,7 @@ const editClient=(req,res)=>{
     .then(client=>{
         //res.redirect(`/clients/profile/${req.params.index}`);
         if(client){
-            res.status(constants.SUCCESS).json(client)
+            res.status(constants.SUCCESS).json(client[1][0].dataValues);
         }else{
             res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
         }
