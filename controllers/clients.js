@@ -107,6 +107,7 @@ const editClient=(req,res)=>{
 }
 
 const deleteClient=(req,res)=>{
+    let flag=0;
     Client.destroy({
         where: {clientId: req.params.index}
     })
@@ -115,9 +116,13 @@ const deleteClient=(req,res)=>{
             where: {clientId: req.params.index}
         })
         .then(()=>{
-            res.redirect('/')
+            res.status(constants.SUCCESS).send('User deleted succesfully!');
+            flag=1;
         })
     })
+    if(flag==1){
+        res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
+    }
 }
 
 const renderChangeRequests=(req,res)=>{
