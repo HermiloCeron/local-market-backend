@@ -61,7 +61,7 @@ const createBusiness=(req,res)=>{
                     modifiedBusiness.requesterRating=0;
                     res.status(constants.SUCCESS).json(modifiedBusiness);
                 }else{
-                    res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
+                    res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong');
                 }
             })     
         })
