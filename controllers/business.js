@@ -57,7 +57,9 @@ const createBusiness=(req,res)=>{
             Business.create(newBusinessData)
             .then(newBusiness=>{
                 if(newBusiness){
-                    res.status(constants.SUCCESS).json(newBusiness);
+                    let modifiedBusiness=newBusiness.dataValues;
+                    modifiedBusiness.requesterRating=0;
+                    res.status(constants.SUCCESS).json(modifiedBusiness);
                 }else{
                     res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
                 }
@@ -115,7 +117,7 @@ const editBusiness=(req,res)=>{
                         res.status(constants.SUCCESS).json(modifiedBusiness);
                     })
                 }else{
-                    res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
+                    res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong');
                 }
 
             })

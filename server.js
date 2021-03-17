@@ -6,7 +6,7 @@ const routes = require('./routes');
 
 const app = express();//app is an object
 
-const port=process.env.PORT || 3000;
+const port=process.env.PORT || 3003;
 
 app.use(express.json({ extended: true }));
 
