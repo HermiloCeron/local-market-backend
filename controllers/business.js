@@ -137,8 +137,8 @@ const deleteBusiness=(req,res)=>{
                         where: {businessId: req.params.businessIndex}
                     })
                     .then(()=>{
-                        res.status(constants.SUCCESS).send('User deleted succesfully!');
                         flag=1;
+                        res.status(constants.SUCCESS).send('User deleted succesfully!');
                     })
                 })
             })
