@@ -360,10 +360,15 @@ const editRating=(req,res)=>{
     })
     .then(rate=>{
         if(rate){
+            // console.log(rate)
             modifiedRate=rate.dataValues;
             modifiedRate.rating=req.body.rating;
+            console.log(req.body)
             Rating.update(modifiedRate,{
-                where:{id:aprovalRequest.dataValues.businessId},
+                where:{
+                    clientId: req.params.clientIndex,
+                    businessId:req.params.businessIndex
+                },
                 returning:true
             })
             .then(newRate=>{
