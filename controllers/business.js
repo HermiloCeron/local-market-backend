@@ -138,24 +138,11 @@ const deleteBusiness=(req,res)=>{
                     .then(()=>{
                         res.status(constants.SUCCESS).send('User deleted succesfully!');
                     })
-                    .cath(error=>{
-                        res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
-                    })
                 })
-                .cath(error=>{
-                    res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
-                })
-            })
-            .cath(error=>{
-                res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
             })
         }else{
             res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`)
         }
-
-    })
-    .cath(error=>{
-        res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
     })
 }
 
