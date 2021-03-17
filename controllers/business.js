@@ -72,14 +72,20 @@ const editBusiness=(req,res)=>{
         console.log(business.ownerId,req.params.clientIndex)
         if(business.ownerId===parseInt(req.params.clientIndex)){
             editedBusinessData=req.body;
-            editedBusinessData.businessId=req.params.businessIndex;
-            editedBusinessData.ownerId=req.params.clientIndex;
+            //editedBusinessData.businessId=req.params.businessIndex;
+            //editedBusinessData.ownerId=req.params.clientIndex;
             Business.update(editedBusinessData,{
                 where: {businessId: req.params.businessIndex},
                 returning: true
             })
             .then(updatedBusiness=>{
-                res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`);
+                
+                if(updatedBusiness){
+                    res.status(constants.SUCCESS).json(updatedBusiness[1][0].dataValues);
+                }else{
+                    res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
+                }
+
             })
         }else{
             Counter.findByPk(1)
