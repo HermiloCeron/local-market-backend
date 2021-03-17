@@ -117,7 +117,6 @@ const editBusiness=(req,res)=>{
 }
 
 const deleteBusiness=(req,res)=>{
-    let flag=0;
     Business.findOne({
         where: {
             businessId:req.params.businessIndex
@@ -137,19 +136,27 @@ const deleteBusiness=(req,res)=>{
                         where: {businessId: req.params.businessIndex}
                     })
                     .then(()=>{
-                        flag=1;
                         res.status(constants.SUCCESS).send('User deleted succesfully!');
                     })
+                    .cath(error=>{
+                        res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
+                    })
                 })
+                .cath(error=>{
+                    res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
+                })
+            })
+            .cath(error=>{
+                res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
             })
         }else{
             res.redirect(`/business/${req.params.clientIndex}/show/${req.params.businessIndex}`)
         }
 
     })
-    if(flag==0){
+    .cath(error=>{
         res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
-    }
+    })
 }
 
 const changeAction=(req,res)=>{
