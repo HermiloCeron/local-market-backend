@@ -4,6 +4,7 @@ const Counter=require('../models').Counter;
 const ChangeRequest=require('../models').ChangeRequest;
 const OwnerAproval=require('../models').OwnerAproval;
 const constants = require('../constants');
+const Peer=require('../models').Peer;
 
 const renderBusiness=(req,res)=>{
     Business.findOne({
@@ -136,7 +137,7 @@ const deleteBusiness=(req,res)=>{
                         where: {businessId: req.params.businessIndex}
                     })
                     .then(()=>{
-                        res.status(constants.SUCCESS).send('User deleted succesfully!');
+                        res.status(constants.SUCCESS).send('Business deleted succesfully!');
                     })
                 })
             })
@@ -248,6 +249,46 @@ const renderLocalBusiness=(req,res)=>{
     })
 }
 
+const renderLucky=(req,res)=>{
+    Peer.findAll({
+        where: {
+            clientId:req.params.clientId
+        }
+    })
+    .then(peers=>{
+        if(peers){
+            if(peers.length>0){
+                let luckyIndex=Math.floor(Math.random() * peers.length);
+                Rating.findAll({
+                    where: {
+                        clientId: luckyIndex,
+                        rating: {
+                            [Op.gte]:4
+                        }
+                    }
+                })
+                .then(peerRatings=>{
+                    if(peerRatings){
+                        if(peerRatings.length>0){
+                            let newLuckyIndex=Math.floor(Math.random() * peerRatings.length);
+                            Business.findOne({
+                                where: {
+                                    businessId: peerRatings[newLuckyIndex].businessId
+                                }
+                            })
+                            .then(luckyBusiness=>{
+                                res.status(constants.SUCCESS).json(luckyBusiness);
+                            })
+                        }
+                    }
+                })
+            }
+        }else{
+            res.status(constants.BAD_REQUEST).send('ERROR: Insuficcient data');
+        }
+    })
+}
+
 module.exports = {
     renderBusiness,
     renderNew,
@@ -258,5 +299,6 @@ module.exports = {
     changeAction,
     createOwnerRequest,
     aprovalAction,
-    renderLocalBusiness
+    renderLocalBusiness,
+    renderLucky
 };

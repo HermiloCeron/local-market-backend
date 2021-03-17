@@ -5,6 +5,7 @@ const ctrl=require('../controllers');
 router.get('/show/:businessArea',ctrl.business.renderLocalBusiness);
 router.get('/showOne/:businessIndex',ctrl.business.renderBusiness);
 router.get('/:clientIndex/new',ctrl.business.renderNew);
+router.get('/:clientIndex/lucky',ctrl.business.renderLucky);
 router.get('/:clientIndex/edit/:businessIndex',ctrl.business.renderEdit);
 router.post('/:clientIndex/new',ctrl.business.createBusiness);
 router.post('/:clientIndex/owner/:businessIndex/oldOwner/:ownerIndex',ctrl.business.createOwnerRequest);
