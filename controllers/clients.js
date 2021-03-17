@@ -120,7 +120,7 @@ const deleteClient=(req,res)=>{
             flag=1;
         })
     })
-    if(flag==1){
+    if(flag==0){
         res.status(constants.BAD_REQUEST).send('ERROR: Something went wrong, try again');
     }
 }
