@@ -38,10 +38,14 @@ const createBusiness=(req,res)=>{
         .then(updatedCounter=>{
             let newBusinessData=req.body;
             newBusinessData.businessId=updatedCounter[1][0].dataValues.business;
-            newBusinessData.ownerId=req.params.clientIndex;
+            //newBusinessData.ownerId=req.params.clientIndex;
             Business.create(newBusinessData)
             .then(newBusiness=>{
-                res.redirect(`/business/${req.params.clientIndex}/show/${newBusiness.businessId}`);
+                if(newBusiness){
+                    res.status(constants.SUCCESS).json(newBusiness);
+                }else{
+                    res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
+                }
             })     
         })
     })
