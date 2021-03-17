@@ -26,7 +26,12 @@ const renderBusiness=(req,res)=>{
             .then(rate=>{
                 console.log(rate);
                 let modifiedBusiness=business.dataValues;
-                modifiedBusiness.requesterRating=rate.dataValues.rating;
+                if(rate){
+                    modifiedBusiness.requesterRating=rate.dataValues.rating;
+                }else{
+                    modifiedBusiness.requesterRating=0;
+                }
+                
                 console.log(modifiedBusiness)
                 res.status(constants.SUCCESS).json(modifiedBusiness);
             })
@@ -112,7 +117,12 @@ const editBusiness=(req,res)=>{
                     .then(rate=>{
                         console.log(rate);
                         let modifiedBusiness=updatedBusiness[1][0].dataValues;
-                        modifiedBusiness.requesterRating=rate.dataValues.rating;
+                        if(rate){
+                            modifiedBusiness.requesterRating=rate.dataValues.rating;
+                        }else{
+                            modifiedBusiness.requesterRating=0;
+                        }
+                        
                         console.log(modifiedBusiness)
                         res.status(constants.SUCCESS).json(modifiedBusiness);
                     })
@@ -311,7 +321,25 @@ const renderLucky=(req,res)=>{
                                 }
                             })
                             .then(luckyBusiness=>{
-                                res.status(constants.SUCCESS).json(luckyBusiness);
+                                Rating.findOne({
+                                    where: {
+                                        clientId: req.params.clientIndex,
+                                        businessId:luckyBusiness.businessId
+                                    }
+                                })
+                                .then(rate=>{
+                                    console.log(rate);
+                                    let modifiedBusiness=luckyBusiness.dataValues;
+                                    if(rate){
+                                        modifiedBusiness.requesterRating=rate.dataValues.rating;
+                                    }else{
+                                        modifiedBusiness.requesterRating=0;
+                                    }
+                                    
+                                    console.log(modifiedBusiness)
+                                    res.status(constants.SUCCESS).json(modifiedBusiness);
+                                })
+                                //res.status(constants.SUCCESS).json(luckyBusiness);
                             })
                         }
                     }
