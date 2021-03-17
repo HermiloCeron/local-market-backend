@@ -17,7 +17,19 @@ const renderBusiness=(req,res)=>{
     })
     .then(business=>{
         if(business){
-            res.status(constants.SUCCESS).json(business);
+            Rating.findOne({
+                where: {
+                    clientId: req.params.clientIndex,
+                    businessId:req.params.businessIndex
+                }
+            })
+            .then(rate=>{
+                console.log(rate);
+                let modifiedBusiness=business;
+                modifiedBusiness.requesterRating=rate.dataValues.rating;
+                console.log(modifiedBusiness)
+                res.status(constants.SUCCESS).json(modifiedBusiness);
+            })
         }else{
             res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Username/Password');
         }
