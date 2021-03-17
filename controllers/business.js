@@ -351,6 +351,53 @@ const renderLucky=(req,res)=>{
     })
 }
 
+const editRating=(req,res)=>{
+    Rating.findOne({
+        where: {
+            clientId: req.params.clientIndex,
+            businessId:req.params.businessIndex
+        }
+    })
+    .then(rate=>{
+        if(rate){
+            modifiedRate=rate.dataValues;
+            modifiedRate.rating=req.body.rating;
+            Rating.update(modifiedRate,{
+                where:{id:aprovalRequest.dataValues.businessId},
+                returning:true
+            })
+            .then(newRate=>{
+                res.status(constants.SUCCESS).json(newRate[1][0].dataValues);
+            })
+        }
+        else{
+            Counter.findByPk(1)
+            .then(counters=>{
+                modifiedCounters=counters.dataValues;
+                modifiedCounters.ratings++;
+                Counter.update(modifiedCounters,{
+                    where:{id:1},
+                    returning:true
+                })
+                .then(updatedCounter=>{
+                    let request={
+                        ratingId: modifiedCounters.ratings,
+                        clientId: req.params.clientIndex,
+                        businessId: req.params.businessIndex,
+                        rating: req.body.rating
+                    }
+                    console.log(request)
+                    Rating.create(request)
+                    .then(newRating=>{
+                        res.status(constants.SUCCESS).json(newRating.dataValues);
+                    })
+                })
+            }) 
+
+        }
+    })
+}
+
 module.exports = {
     renderBusiness,
     renderNew,
@@ -362,5 +409,6 @@ module.exports = {
     createOwnerRequest,
     aprovalAction,
     renderLocalBusiness,
-    renderLucky
+    renderLucky,
+    editRating
 };
