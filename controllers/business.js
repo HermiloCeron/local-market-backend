@@ -6,6 +6,8 @@ const OwnerAproval=require('../models').OwnerAproval;
 const constants = require('../constants');
 const Peer=require('../models').Peer;
 
+const { Op } = require("sequelize");
+
 const renderBusiness=(req,res)=>{
     Business.findOne({
         where: {
@@ -250,24 +252,29 @@ const renderLocalBusiness=(req,res)=>{
 }
 
 const renderLucky=(req,res)=>{
+    console.log("HOLA")
     Peer.findAll({
         where: {
-            clientId:req.params.clientId
+            clientId:req.params.clientIndex
         }
     })
     .then(peers=>{
+        console.log(peers)
         if(peers){
             if(peers.length>0){
                 let luckyIndex=Math.floor(Math.random() * peers.length);
+                let luckyId=peers[luckyIndex].dataValues.peerClientId
+                console.log(luckyIndex,luckyId);
                 Rating.findAll({
                     where: {
-                        clientId: luckyIndex,
+                        clientId: luckyId,
                         rating: {
                             [Op.gte]:4
                         }
                     }
                 })
                 .then(peerRatings=>{
+                    console.log(peerRatings)
                     if(peerRatings){
                         if(peerRatings.length>0){
                             let newLuckyIndex=Math.floor(Math.random() * peerRatings.length);
