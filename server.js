@@ -17,7 +17,7 @@ const port=process.env.PORT || 3003;
 //     next();
 // })
 
-app.use(cors({origin: 'http://hermilo-local-market.surge.sh/'}));
+app.use(cors({origin: 'hermilo-local-market.surge.sh/'}));
 
 app.use(express.json({ extended: true }));
 
