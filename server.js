@@ -1,5 +1,5 @@
 //require('dotenv').config();
-
+var cors = require('cors');
 const express = require('express'); //from documentation: express is function
 const methodOverride = require('method-override');
 const routes = require('./routes');
@@ -8,14 +8,16 @@ const app = express();//app is an object
 
 const port=process.env.PORT || 3003;
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://hermilo-local-market.surge.sh/");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-})
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "http://hermilo-local-market.surge.sh/");
+//     res.header(
+//       "Access-Control-Allow-Headers",
+//       "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next();
+// })
+
+app.use(cors({origin: 'http://hermilo-local-market.surge.sh/'}));
 
 app.use(express.json({ extended: true }));
 
