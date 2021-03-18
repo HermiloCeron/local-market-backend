@@ -8,6 +8,15 @@ const app = express();//app is an object
 
 const port=process.env.PORT || 3003;
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://hermilo-local-market.surge.sh/");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+})
+
 app.use(express.json({ extended: true }));
 
 app.use(methodOverride('_method'));
